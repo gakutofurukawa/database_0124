@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}会議作成{% endblock %}
+
+{% block content %}
+<h1>新しい会議を作成</h1>
+<form method="POST">
+    <label>会議名: <input type="text" name="title" required></label>
+    <label>場所: <input type="text" name="location" required></label>
+    <label>期間:
+        <input type="date" name="start_date" required> ～
+        <input type="date" name="end_date" required>
+    </label>
+    
+    <h3>必須メンバー選択</h3>
+    {% for user in users %}
+    <label>
+        <input type="checkbox" name="members" value="{{ user.id }}">
+        {{ user.name }} ({{ user.role }})
+    </label>
+    {% endfor %}
+    
+    <button type="submit">次へ</button>
+</form>
+{% endblock %}

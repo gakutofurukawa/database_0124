@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}ユーザー管理{% endblock %}
+
+{% block content %}
+<h1>ユーザー管理</h1>
+<form method="POST">
+    <div>
+        <label>名前: <input type="text" name="name" required></label>
+        <label>Email: <input type="email" name="email" required></label>
+        <label>役割:
+            <select name="role">
+                <option value="user">一般ユーザー</option>
+                <option value="admin">管理者</option>
+            </select>
+        </label>
+        <button type="submit">登録</button>
+    </div>
+</form>
+
+<h2>登録済みユーザー</h2>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>名前</th>
+        <th>Email</th>
+        <th>役割</th>
+        <th>操作</th>
+    </tr>
+    {% for user in users %}
+    <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.role }}</td>
+        <td>
+            <form method="POST">
+                <input type="hidden" name="user_id" value="{{ user.id }}">
+                <button type="submit" name="delete">削除</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

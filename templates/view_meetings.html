@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}会議一覧{% endblock %}
+
+{% block content %}
+<h1>会議一覧</h1>
+<ul>
+    {% for meeting in meetings %}
+        <li>
+            {{ meeting.title }} - {{ meeting.location }}
+            ({{ meeting.date_time }})
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

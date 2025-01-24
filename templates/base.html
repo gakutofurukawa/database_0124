@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('index') }}">ホーム</a>
+        <a href="{{ url_for('user_management') }}">ユーザー管理</a>
+        <a href="{{ url_for('create_meeting') }}">会議作成</a>
+        <a href="{{ url_for('add_availability') }}">空き登録</a>
+        <a href="{{ url_for('view_meetings') }}">会議一覧</a>
+    </nav>
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

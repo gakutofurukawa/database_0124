@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
+
+<div class="container">
+    <h1>空き日程登録</h1>
+    <form method="POST" id="availability-form">
+        <div class="form-group">
+            <label for="member_id">ユーザーID:</label>
+            <input type="number" class="form-control" id="member_id" name="member_id" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="date-picker">選択日付:</label>
+            <input type="text" class="form-control" id="date-picker" placeholder="日付を選択">
+            <input type="hidden" name="selected_dates" id="selected-dates">
+        </div>
+
+        <button type="submit" class="btn btn-primary">登録</button>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const picker = flatpickr("#date-picker", {
+        mode: "multiple",
+        dateFormat: "Y-m-d",
+        locale: "ja",
+        inline: true,
+        onChange: function(selectedDates, date_str) {
+            // 日付が選択されたときの動作
+            document.getElementById('selected-dates').value = date_str;
+
+            // コンソールログで選択された値を確認
+            console.log("選択された日付（カンマ区切り）:", date_str);
+        }
+    });
+
+    // フォーム送信時にhiddenフィールドの値を確認
+    const form = document.getElementById('availability-form');
+    form.addEventListener('submit', function(event) {
+        const selectedDates = document.getElementById('selected-dates').value;
+        console.log("送信前のselected-datesの値:", selectedDates);
+    });
+});
+</script>
+
+<style>
+.flatpickr-calendar {
+    margin: 20px auto;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+.form-group {
+    margin-bottom: 1.5rem;
+    max-width: 500px;
+}
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 20px;
+}
+</style>
+{% endblock %}

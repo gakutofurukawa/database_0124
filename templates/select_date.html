@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}日程選択{% endblock %}
+
+{% block content %}
+<form method="POST">
+    <h1>共通空き日程を選択</h1>
+    <ul>
+        {% for date in candidate_dates %}
+            <li>
+                <input type="radio" name="selected_date" value="{{ date }}" required> {{ date }}
+            </li>
+        {% endfor %}
+    </ul>
+    <button type="submit" class="btn btn-primary">日程を確定</button>
+</form>
+
+{% endblock %}
