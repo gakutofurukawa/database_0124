@@ -164,15 +164,82 @@ li:last-child {
     color: white;
 }
 
-/* その他 */
-ul.radio-list {
-    padding-left: 0;
+
+
+/* ラジオボタン専用スタイル */
+.schedule-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.radio-list {
+    padding: 0;
+    margin: 1.5rem 0;
 }
 
 .radio-list li {
-    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin: 0.75rem 0;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 2px solid #e9ecef;
+    transition: all 0.2s ease;
+}
+
+.radio-list li:hover {
+    transform: translateX(5px);
+    border-color: #4CAF50;
+    box-shadow: 0 2px 6px rgba(76,175,80,0.2);
 }
 
 .radio-list input[type="radio"] {
-    margin-right: 0.5rem;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border: 2px solid #ced4da;
+    border-radius: 50%;
+    margin-right: 1.2rem;
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.radio-list input[type="radio"]:checked {
+    border-color: #4CAF50;
+    background: #fff;
+}
+
+.radio-list input[type="radio"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background: #4CAF50;
+    border-radius: 50%;
+}
+
+.radio-list label {
+    font-size: 1.1rem;
+    color: #495057;
+    cursor: pointer;
+    flex-grow: 1;
+    padding: 4px 0;
+}
+
+.submit-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1rem;
+    margin-top: 1.5rem;
 }

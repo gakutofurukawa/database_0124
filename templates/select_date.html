@@ -3,16 +3,19 @@
 {% block title %}日程選択{% endblock %}
 
 {% block content %}
-<form method="POST">
+<div class="schedule-container">
     <h1>共通空き日程を選択</h1>
-    <ul>
-        {% for date in candidate_dates %}
-            <li>
-                <input type="radio" name="selected_date" value="{{ date }}" required> {{ date }}
-            </li>
-        {% endfor %}
-    </ul>
-    <button type="submit" class="btn btn-primary">日程を確定</button>
-</form>
+    <form method="POST">
+        <ul class="radio-list">
+            {% for date in candidate_dates %}
+                <li>
+                    <input type="radio" name="selected_date" id="date{{ loop.index }}" value="{{ date }}" required>
+                    <label for="date{{ loop.index }}">{{ date }}</label>
+                </li>
+            {% endfor %}
+        </ul>
+        <button type="submit" class="btn btn-primary submit-btn">日程を確定</button>
+    </form>
+</div>
 
 {% endblock %}
